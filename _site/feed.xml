@@ -5,9 +5,99 @@
     <description></description>
     <link>http://crazyydevil.github.io/</link>
     <atom:link href="http://crazyydevil.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Mon, 11 Jul 2016 18:11:27 +0800</pubDate>
-    <lastBuildDate>Mon, 11 Jul 2016 18:11:27 +0800</lastBuildDate>
+    <pubDate>Wed, 31 Aug 2016 11:58:31 +0800</pubDate>
+    <lastBuildDate>Wed, 31 Aug 2016 11:58:31 +0800</lastBuildDate>
     <generator>Jekyll v3.1.6</generator>
+    
+      <item>
+        <title>代理为什么要使用weak修饰</title>
+        <description>&lt;ul id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#section&quot; id=&quot;markdown-toc-section&quot;&gt;例子&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#weak&quot; id=&quot;markdown-toc-weak&quot;&gt;使用weak&lt;/a&gt;        &lt;ul&gt;
+          &lt;li&gt;&lt;a href=&quot;#carh&quot; id=&quot;markdown-toc-carh&quot;&gt;Car.h&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;#carm&quot; id=&quot;markdown-toc-carm&quot;&gt;Car.m&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;#section-1&quot; id=&quot;markdown-toc-section-1&quot;&gt;运行项目 得到执行结果&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#strong&quot; id=&quot;markdown-toc-strong&quot;&gt;使用strong&lt;/a&gt;        &lt;ul&gt;
+          &lt;li&gt;&lt;a href=&quot;#section-2&quot; id=&quot;markdown-toc-section-2&quot;&gt;运行项目 得到执行结果&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;代理为什么要使用weak修饰&lt;/p&gt;
+
+&lt;h2 id=&quot;section&quot;&gt;例子&lt;/h2&gt;
+
+&lt;h3 id=&quot;weak&quot;&gt;使用weak&lt;/h3&gt;
+
+&lt;h4 id=&quot;carh&quot;&gt;Car.h&lt;/h4&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;@protocol&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;CarDelegate&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;NSObject&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+
+&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;playCar&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;@end&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;@interface&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Car&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;NSObject&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;@property&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;nonatomic&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;weak&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;id&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;CarDelegate&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;delegate&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;@end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h4 id=&quot;carm&quot;&gt;Car.m&lt;/h4&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;#import &quot;Car.h&quot;
+&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;@implementation&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Car&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;dealloc&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;NSLog&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;@&quot;执行 car dealloc 方法&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;@end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h4 id=&quot;section-1&quot;&gt;运行项目 得到执行结果&lt;/h4&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;2016-08-31 11:12:54.078 demoOne[947:28761] 开车
+2016-08-31 11:12:54.079 demoOne[947:28761] 执行 people dealloc 方法
+2016-08-31 11:12:54.079 demoOne[947:28761] 执行 car dealloc 方法 #### 我们发现car和peopel 都执行了销毁代码，说明使用weak时，可以使delegate指向的对象释放，delegate所在对象也能顺利释放，这和weak的arc用法一致。
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;strong&quot;&gt;使用strong&lt;/h3&gt;
+&lt;p&gt;让我们把delegate的属性设置为strong试试&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;@property&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;nonatomic&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;strong&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;id&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;CarDelegate&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;delegate&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h4 id=&quot;section-2&quot;&gt;运行项目 得到执行结果&lt;/h4&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;2016-08-31 11:38:45.848 demoOne[1128:38638] 开车
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;我们发现car和peopel 都没有执行了销毁代码，说明使用strong时，delegate指向的对象当没有额外的对象来持有时，没有顺利释放销毁。&lt;/p&gt;
+
+&lt;p&gt;得出结论：当delegate使用weak时，在对象没有其他引用时，可以顺利释放并销毁。&lt;/p&gt;
+
+</description>
+        <pubDate>Mon, 29 Aug 2016 15:00:00 +0800</pubDate>
+        <link>http://crazyydevil.github.io/2016/08/29/%E4%BB%A3%E7%90%86%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E7%94%A8weak%E4%BF%AE%E9%A5%B0-1/</link>
+        <guid isPermaLink="true">http://crazyydevil.github.io/2016/08/29/%E4%BB%A3%E7%90%86%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E7%94%A8weak%E4%BF%AE%E9%A5%B0-1/</guid>
+        
+        <category>修饰符</category>
+        
+        
+        <category>iOS</category>
+        
+      </item>
     
       <item>
         <title>学习用github搭建个人博客</title>

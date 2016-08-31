@@ -6,14 +6,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>学习用github搭建个人博客</title>
-    <meta name="description" content="学习用github搭建个人博客">
+    <title>代理为什么要使用weak修饰</title>
+    <meta name="description" content="代理为什么要使用weak修饰">
 
     <link rel="shortcut icon" href="/favicon.ico?" type="image/x-icon">
     <link rel="icon" href="/favicon.ico?" type="image/x-icon">
     <link rel="stylesheet" href=" /css/fontawesome/css/font-awesome.min.css ">
     <link rel="stylesheet" href=" /css/main.css ">
-    <link rel="canonical" href="http://crazyydevil.github.io/2016/07/10/github-blog-1/">
+    <link rel="canonical" href="http://crazyydevil.github.io/2016/08/29/%E4%BB%A3%E7%90%86%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E7%94%A8weak%E4%BF%AE%E9%A5%B0-1/">
     <link rel="alternate" type="application/rss+xml" title="Crazyydevil的博客" href="http://crazyydevil.github.io /feed.xml ">
 
 
@@ -116,11 +116,11 @@
 
         <div class="page clearfix" post>
     <div class="left">
-        <h1>学习用github搭建个人博客</h1>
+        <h1>代理为什么要使用weak修饰</h1>
         <div class="label">
 
             <div class="label-card">
-                <i class="fa fa-calendar"></i>2016-07-10
+                <i class="fa fa-calendar"></i>2016-08-29
             </div>
 
             <div class="label-card">
@@ -140,7 +140,7 @@
   <i class="fa fa-th-list"></i>
   
     
-        <a href="/category/#GitHub" title="Category: GitHub" rel="category">GitHub</a>
+        <a href="/category/#iOS" title="Category: iOS" rel="category">iOS</a>
     
   
 
@@ -157,8 +157,8 @@
   <i class="fa fa-tags"></i>
   
     
-        <!--a href="/tag/#Github" title="Tag: Github" rel="tag">Github</a-->
-        <a href="/tag/#Github" title="Tag: Github" rel="tag">Github</a>
+        <!--a href="/tag/#%E4%BF%AE%E9%A5%B0%E7%AC%A6" title="Tag: 修饰符" rel="tag">修饰符</a-->
+        <a href="/tag/#修饰符" title="Tag: 修饰符" rel="tag">修饰符</a>
     
   
 
@@ -170,18 +170,80 @@
         <hr>
         <article itemscope itemtype="http://schema.org/BlogPosting">
         <ul id="markdown-toc">
-  <li><a href="#github-" id="markdown-toc-github-">github 注册个人二级域名</a></li>
-  <li><a href="#jekyll-" id="markdown-toc-jekyll-">jekyll 搭建博客模版</a></li>
-  <li><a href="#markdown" id="markdown-toc-markdown">markdown使用</a></li>
+  <li><a href="#section" id="markdown-toc-section">例子</a>    <ul>
+      <li><a href="#weak" id="markdown-toc-weak">使用weak</a>        <ul>
+          <li><a href="#carh" id="markdown-toc-carh">Car.h</a></li>
+          <li><a href="#carm" id="markdown-toc-carm">Car.m</a></li>
+          <li><a href="#section-1" id="markdown-toc-section-1">运行项目 得到执行结果</a></li>
+        </ul>
+      </li>
+      <li><a href="#strong" id="markdown-toc-strong">使用strong</a>        <ul>
+          <li><a href="#section-2" id="markdown-toc-section-2">运行项目 得到执行结果</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
 </ul>
 
-<p>学习用github搭建个人博客</p>
+<p>代理为什么要使用weak修饰</p>
 
-<h2 id="github-">github 注册个人二级域名</h2>
+<h2 id="section">例子</h2>
 
-<h2 id="jekyll-">jekyll 搭建博客模版</h2>
+<h3 id="weak">使用weak</h3>
 
-<h2 id="markdown">markdown使用</h2>
+<h4 id="carh">Car.h</h4>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">@protocol</span> <span class="nc">CarDelegate</span> <span class="o">&lt;</span><span class="n">NSObject</span><span class="o">&gt;</span>
+
+<span class="o">-</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="n">playCar</span><span class="p">;</span>
+
+<span class="k">@end</span>
+
+<span class="k">@interface</span> <span class="nc">Car</span> <span class="p">:</span> <span class="nc">NSObject</span>
+
+<span class="k">@property</span> <span class="p">(</span><span class="n">nonatomic</span><span class="p">,</span><span class="n">weak</span><span class="p">)</span> <span class="n">id</span> <span class="o">&lt;</span><span class="n">CarDelegate</span><span class="o">&gt;</span> <span class="n">delegate</span><span class="p">;</span>
+
+<span class="k">@end</span>
+</code></pre>
+</div>
+
+<h4 id="carm">Car.m</h4>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="cp">#import "Car.h"
+</span>
+<span class="k">@implementation</span> <span class="nc">Car</span>
+
+<span class="k">-</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="n">dealloc</span>
+<span class="p">{</span>
+    <span class="n">NSLog</span><span class="p">(</span><span class="s">@"执行 car dealloc 方法"</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="k">@end</span>
+</code></pre>
+</div>
+
+<h4 id="section-1">运行项目 得到执行结果</h4>
+<div class="highlighter-rouge"><pre class="highlight"><code>2016-08-31 11:12:54.078 demoOne[947:28761] 开车
+2016-08-31 11:12:54.079 demoOne[947:28761] 执行 people dealloc 方法
+2016-08-31 11:12:54.079 demoOne[947:28761] 执行 car dealloc 方法 #### 我们发现car和peopel 都执行了销毁代码，说明使用weak时，可以使delegate指向的对象释放，delegate所在对象也能顺利释放，这和weak的arc用法一致。
+</code></pre>
+</div>
+
+<h3 id="strong">使用strong</h3>
+<p>让我们把delegate的属性设置为strong试试</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">@property</span> <span class="p">(</span><span class="n">nonatomic</span><span class="p">,</span><span class="n">strong</span><span class="p">)</span> <span class="n">id</span> <span class="o">&lt;</span><span class="n">CarDelegate</span><span class="o">&gt;</span> <span class="n">delegate</span><span class="p">;</span>
+</code></pre>
+</div>
+
+<h4 id="section-2">运行项目 得到执行结果</h4>
+<div class="highlighter-rouge"><pre class="highlight"><code>2016-08-31 11:38:45.848 demoOne[1128:38638] 开车
+</code></pre>
+</div>
+
+<p>我们发现car和peopel 都没有执行了销毁代码，说明使用strong时，delegate指向的对象当没有额外的对象来持有时，没有顺利释放销毁。</p>
+
+<p>得出结论：当delegate使用weak时，在对象没有其他引用时，可以顺利释放并销毁。</p>
 
 
         </article>
@@ -200,11 +262,13 @@
 
         <div class="post-recent">
     
+    <div class="pre">
+
+        <p><strong>上一篇</strong> <a href="/2016/07/10/github-blog-1/">学习用github搭建个人博客</a></p>
+        
     </div>
     <div class="nex">
 
-        
-        <p><strong>下一篇</strong> <a href="/2016/08/29/%E4%BB%A3%E7%90%86%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E7%94%A8weak%E4%BF%AE%E9%A5%B0-1/">代理为什么要使用weak修饰</a></p>
         
     </div>
 </div>
@@ -222,8 +286,8 @@
      */
 
     var disqus_config = function() {
-        this.page.url = 'http://crazyydevil.github.io/2016/07/10/github-blog-1/'; // Replace PAGE_URL with your page's canonical URL variable
-        this.page.identifier = 'http://crazyydevil.github.io/2016/07/10/github-blog-1/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        this.page.url = 'http://crazyydevil.github.io/2016/08/29/%E4%BB%A3%E7%90%86%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E7%94%A8weak%E4%BF%AE%E9%A5%B0-1/'; // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = 'http://crazyydevil.github.io/2016/08/29/%E4%BB%A3%E7%90%86%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E7%94%A8weak%E4%BF%AE%E9%A5%B0-1/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
     };
 
     (function() { // DON'T EDIT BELOW THIS LINE
