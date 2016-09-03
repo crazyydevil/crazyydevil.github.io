@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>masonry介绍与使用</title>
+    <meta name="description" content="masonry介绍与使用">
+
+    <link rel="shortcut icon" href="/favicon.ico?" type="image/x-icon">
+    <link rel="icon" href="/favicon.ico?" type="image/x-icon">
+    <link rel="stylesheet" href=" /css/fontawesome/css/font-awesome.min.css ">
+    <link rel="stylesheet" href=" /css/main.css ">
+    <link rel="canonical" href="http://crazyydevil.github.io/2016/08/29/masonry%E4%BB%8B%E7%BB%8D%E4%B8%8E%E4%BD%BF%E7%94%A8-1/">
+    <link rel="alternate" type="application/rss+xml" title="Crazyydevil的博客" href="http://crazyydevil.github.io /feed.xml ">
+
+
+    <script>
+    // 百度统计代码
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?cf8506e0ef223e57ff6239944e5d46a4";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+    </script>
+
+
+    <script>
+    // google analytics
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-72449510-4', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+
+</head>
+
+
+  <body>
+
+    <header id="top">
+    <div class="wrapper">
+        <a href="/" class="brand">Crazyydevil的博客</a>
+        <small>记录代码人生</small>
+        <button id="headerMenu" class="menu"><i class="fa fa-bars"></i></button>
+        <nav id="headerNav">
+            <ul>
+                <li>
+                    
+                    <a href="/">
+                    
+                        <i class="fa fa-home"></i>Home
+                    </a>
+                </li>
+
+                
+                    
+                    <li>
+                        
+                        <a href="/archive/">
+                        
+                            <i class="fa fa-archive"></i>Archives
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/category/">
+                        
+                            <i class="fa fa-th-list"></i>Categories
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/tag/">
+                        
+                            <i class="fa fa-tags"></i>Tags
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/about/">
+                        
+                            <i class="fa fa-heart"></i>About
+                        </a>
+                    </li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+        </nav>
+    </div>
+</header>
+
+
+        <div class="page clearfix" post>
+    <div class="left">
+        <h1>masonry介绍与使用</h1>
+        <div class="label">
+
+            <div class="label-card">
+                <i class="fa fa-calendar"></i>2016-08-29
+            </div>
+
+            <div class="label-card">
+                
+            </div>
+
+            <div class="label-card">
+                
+            </div>
+
+            <div class="label-card">
+            
+
+
+<!-- <span class="point">•</span> -->
+<span class="categories">
+  <i class="fa fa-th-list"></i>
+  
+    
+        <a href="/category/#iOS" title="Category: iOS" rel="category">iOS</a>
+    
+  
+
+  <!-- <span class="point">•</span> -->
+</span>
+
+
+            </div>
+
+            <div class="label-card">
+            
+<!-- <span class="point">•</span> -->
+<span class="pageTag">
+  <i class="fa fa-tags"></i>
+  
+    
+        <!--a href="/tag/#UIView" title="Tag: UIView" rel="tag">UIView</a-->
+        <a href="/tag/#UIView" title="Tag: UIView" rel="tag">UIView</a>
+    
+  
+
+</span>
+
+            </div>
+
+        </div>
+        <hr>
+        <article itemscope itemtype="http://schema.org/BlogPosting">
+        <ul id="markdown-toc">
+  <li><a href="#xibstoryboard" id="markdown-toc-xibstoryboard">关于xib、Storyboard、手写代码的选择</a>    <ul>
+      <li><a href="#section" id="markdown-toc-section">直接说结论</a></li>
+    </ul>
+  </li>
+  <li><a href="#masonry-autolayout" id="markdown-toc-masonry-autolayout">masonry-autolayout框架</a>    <ul>
+      <li><a href="#masonry" id="markdown-toc-masonry">masonry介绍</a></li>
+      <li><a href="#masonry-1" id="markdown-toc-masonry-1">masonry使用</a></li>
+      <li><a href="#masonry-githubhttpsgithubcomsnapkitmasonry" id="markdown-toc-masonry-githubhttpsgithubcomsnapkitmasonry">masonry 在<a href="https://github.com/SnapKit/Masonry">github的地址</a></a></li>
+      <li><a href="#masonry-" id="markdown-toc-masonry-">masonry 的安装</a></li>
+      <li><a href="#demo1" id="markdown-toc-demo1">demo1</a>        <ul>
+          <li><a href="#view200" id="markdown-toc-view200">设置一个view，位于视图最中心，且长宽为200</a></li>
+          <li><a href="#section-1" id="markdown-toc-section-1">将长宽改为150，其他不变</a></li>
+          <li><a href="#section-2" id="markdown-toc-section-2">使用重置约束将长宽修改为200</a></li>
+        </ul>
+      </li>
+      <li><a href="#demo2" id="markdown-toc-demo2">demo2</a>        <ul>
+          <li><a href="#section-3" id="markdown-toc-section-3">总结</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<p>masonry介绍与使用</p>
+
+<h2 id="xibstoryboard">关于xib、Storyboard、手写代码的选择</h2>
+
+<p>业内对这个讨论的文章很多，基本也达成共识。
+可以看一下唐巧博客里的<a href="http://blog.devtang.com/2015/03/22/ios-dev-controversy-2/">这篇文章</a></p>
+
+<h3 id="section">直接说结论</h3>
+<p>对于相对静态的页面，需求变更少，个人或者小团队，开发速度要求更快的，建议多使用xib和storyboard。</p>
+
+<p>对于复杂页面，需求变更多，团队协作，代码结构要求更高的，建议多使用手写代码</p>
+
+<h2 id="masonry-autolayout">masonry-autolayout框架</h2>
+
+<h3 id="masonry">masonry介绍</h3>
+
+<p>苹果在ios6之前，iphone使用320*480的点位进行开发，ipad则使用1027*768，不需要考虑适配问题，那时候大家都直接使用frame 绝对坐标。</p>
+
+<p>但是在ios6出来之后，苹果出现了不同屏幕尺寸，iOS开发者面临着为不同尺寸设备开发的问题。当然苹果也提供了autolayout的方案，autolayout对xib和storyboard更友好，可以使用拖拽进行适配，但是xib和storyboard也有缺点，对于那些喜欢用代码来进行界面编写的开发者，也可以使用autolayout本身提供的代码，不过我相信大多数人使用的感觉是很不友好。</p>
+
+<p>而masonry就是为了解决手写界面适配问题而出现的。是目前最流行的autolayout框架</p>
+
+<h3 id="masonry-1">masonry使用</h3>
+
+<h3 id="masonry-githubhttpsgithubcomsnapkitmasonry">masonry 在<a href="https://github.com/SnapKit/Masonry">github的地址</a></h3>
+
+<h3 id="masonry-">masonry 的安装</h3>
+<p>masonry 是使用cocoaPod 管理的 在PodFile 文件中加入 
+<code class="highlighter-rouge">pod 'Masonry'</code>
+并使用<code class="highlighter-rouge">pod install</code> 即可</p>
+
+<h3 id="demo1">demo1</h3>
+
+<h4 id="view200">设置一个view，位于视图最中心，且长宽为200</h4>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>[self.blueView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.size.mas_equalTo(CGSizeMake(200, 200));
+        make.center.equalTo(self.view);
+    }];
+</code></pre>
+</div>
+
+<p>运行效果：</p>
+
+<p><img src="https://d17oy1vhnax1f7.cloudfront.net/items/0G0a3p3d3C0H381z3Z3I/Simulator%20Screen%20Shot%202016%E5%B9%B49%E6%9C%883%E6%97%A5%20%E4%B8%8B%E5%8D%883.40.27.png?v=696a7267" alt="" /></p>
+
+<h4 id="section-1">将长宽改为150，其他不变</h4>
+<div class="highlighter-rouge"><pre class="highlight"><code> [self.blueView mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.size.mas_equalTo(CGSizeMake(150, 150));
+    }];
+</code></pre>
+</div>
+
+<p>运行效果</p>
+
+<p><img src="https://d17oy1vhnax1f7.cloudfront.net/items/2n0C3v2S2Y1M0F453j3E/Simulator%20Screen%20Shot%202016%E5%B9%B49%E6%9C%883%E6%97%A5%20%E4%B8%8B%E5%8D%883.39.26.png?v=63ab33c3" alt="" /></p>
+
+<h4 id="section-2">使用重置约束将长宽修改为200</h4>
+<div class="highlighter-rouge"><pre class="highlight"><code> [self.blueView mas_makeConstraints:^(MASConstraintMaker *make) {
+    make.size.mas_equalTo(CGSizeMake(200, 200));
+    make.center.equalTo(self.view);
+}];
+
+[self.blueView mas_updateConstraints:^(MASConstraintMaker *make) {
+    make.size.mas_equalTo(CGSizeMake(150, 150));
+}];
+
+[self.blueView mas_remakeConstraints:^(MASConstraintMaker *make) {
+    make.size.mas_equalTo(CGSizeMake(200, 200));
+}];
+</code></pre>
+</div>
+
+<p>运行效果</p>
+
+<p><img src="https://d17oy1vhnax1f7.cloudfront.net/items/0w09140k0v1I3r13382Z/Simulator%20Screen%20Shot%202016%E5%B9%B49%E6%9C%883%E6%97%A5%20%E4%B8%8B%E5%8D%883.38.03.png?v=86f9f716" alt="" /></p>
+
+<p>上面的demo展示了masonry的三种约束管理</p>
+
+<ol>
+  <li>mas_makeConstraints 用于初始化的增加约束</li>
+  <li>mas_updateConstraints 当需要修改约束时调用</li>
+  <li>mas_remakeConstraints 移除所有约束再修改</li>
+</ol>
+
+<p>2和3的区别在于一个是直接覆盖之前的约束，另一个是移除所有的约束再修改</p>
+
+<p>如果我们使用连续mas_makeConstraints来进行修改，也可以修改的，但是会报异常信息，建议严格按照上面的方法来编写。</p>
+
+<h3 id="demo2">demo2</h3>
+
+<p>设置一个视图，包含三个view：</p>
+
+<p>1.ViewA距离顶部10，距离左边20，距离右边20，高度为父视图的1/3；</p>
+
+<p>2.ViewB顶部距离ViewA底部10，距离底部10，距离左边10，宽为ViewA宽度的三分之一,高为ViewA的3倍</p>
+
+<p>3.ViewC左边距离ViewB右边10，顶部距离ViewA底部10，距离右边10，距离底部10</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code> [self.viewA mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.and.left.equalTo(self.view).with.offset(10);
+        make.right.equalTo(self.view).with.offset(-10);
+        make.height.equalTo(self.view).with.multipliedBy(1/3.0);
+    }];
+    
+    [self.viewB mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.viewA.mas_bottom).with.offset(10);
+        make.left.equalTo(self.view).with.offset(10);
+        make.bottom.equalTo(self.view).with.offset(-10);
+        make.width.equalTo(self.view).with.multipliedBy(0.5);
+    }];
+    
+    [self.viewC mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.viewA.mas_bottom).with.offset(10);
+        make.left.equalTo(self.viewB.mas_right).with.offset(10);
+        make.right.equalTo(self.view).with.offset(-10);
+        make.bottom.equalTo(self.view).with.offset(-10);
+    }];
+</code></pre>
+</div>
+
+<p>运行效果</p>
+
+<p><img src="https://d17oy1vhnax1f7.cloudfront.net/items/1n0l3Z3C160i0F2R373j/Simulator%20Screen%20Shot%202016%E5%B9%B49%E6%9C%883%E6%97%A5%20%E4%B8%8B%E5%8D%886.03.35.png?v=803068ca" alt="" /></p>
+
+<h4 id="section-3">总结</h4>
+
+<p>1.常用的约束为offset（位移），和multipliedBy（倍率）,注意offset和iOS本身的坐标系一致，有正负之分</p>
+
+<p>2.make.equalTo,make.greaterThanOrEqualTo make.lessThanOrEqualTo 比较</p>
+
+<p>3.添加约束必须在该控件已经添加到父控件之后</p>
+
+<p>4.注意equalTo与mas_equalTo的区别 mas_equalTo增加了类型转换
+<code class="highlighter-rouge">#define mas_equalTo(...)                 equalTo(MASBoxValue((__VA_ARGS__)))</code></p>
+
+<p>当使用and连接时，用equalTo</p>
+
+<p><code class="highlighter-rouge">make.top.and.left.equalTo(self.view).with.offset(10);</code></p>
+
+
+        </article>
+        <hr>
+
+        
+        
+            
+            
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+            
+        
+        
+
+        <div class="post-recent">
+    
+    <div class="pre">
+
+        <p><strong>上一篇</strong> <a href="/2016/07/15/%E4%BB%A3%E7%90%86%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E7%94%A8weak%E4%BF%AE%E9%A5%B0-1/">代理为什么要使用weak修饰</a></p>
+        
+    </div>
+    <div class="nex">
+
+        
+    </div>
+</div>
+
+
+        <h2 id="comments">Comments</h2>
+        
+
+
+<div id="disqus_thread"></div>
+<script>
+    /**
+     * RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     * LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+
+    var disqus_config = function() {
+        this.page.url = 'http://crazyydevil.github.io/2016/08/29/masonry%E4%BB%8B%E7%BB%8D%E4%B8%8E%E4%BD%BF%E7%94%A8-1/'; // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = 'http://crazyydevil.github.io/2016/08/29/masonry%E4%BB%8B%E7%BB%8D%E4%B8%8E%E4%BD%BF%E7%94%A8-1/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+
+    (function() { // DON'T EDIT BELOW THIS LINE
+        var d = document,
+            s = d.createElement('script');
+
+        s.src = '//crazyydevil.disqus.com/embed.js';
+
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+
+
+
+    </div>
+    <button class="anchor"><i class="fa fa-anchor"></i></button>
+    <div class="right">
+        <div class="wrap">
+
+            <!-- Content -->
+            <div class="side content">
+                <div>
+                    Content
+                </div>
+                <ul id="content-side" class="content-ul">
+                    <li><a href="#similar_posts">Similar Posts</a></li>
+                    <li><a href="#comments">Comments</a></li>
+                </ul>
+            </div>
+            <!-- 其他div框放到这里 -->
+            <!-- <div class="side">bbbb</div> -->
+        </div>
+    </div>
+</div>
+<script>
+/**
+ * target _blank
+ */
+(function() {
+    var aTags = document.querySelectorAll('article a:not([id])')
+    for (var i = 0; i < aTags.length; i++) {
+        aTags[i].setAttribute('target', '_blank')
+    }
+}());
+</script>
+<script src="/js/pageContent.js " charset="utf-8"></script>
+
+
+    <footer class="site-footer">
+
+
+    <div class="wrapper">
+
+        <p class="description">
+             记录代码人生！ 
+        </p>
+        <p class="contact">
+            Contact me at: 
+            <a href="https://github.com/crazyydevil" title="GitHub"><i class="fa fa-github" aria-hidden="true"></i></a>  
+            <a href="mailto:crazyydevil@163.com" title="email"><i class="fa fa-envelope-o" aria-hidden="true"></i></a>        
+        </p>
+        <p>
+            本站总访问量<span id="busuanzi_value_site_pv"></span>次，本站访客数<span id="busuanzi_value_site_uv"></span>人次，本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+        </p>
+        <p class="power">
+            <span>
+                Site powered by <a href="https://jekyllrb.com/">Jekyll</a> & <a href="https://pages.github.com/">Github Pages</a>.
+            </span>
+            <span>
+                Theme designed by <a href="https://github.com/Gaohaoyang">HyG</a>.
+            </span>
+        </p>
+    </div>
+</footer>
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+    <div class="back-to-top">
+    <a href="#top" class="scroll">
+        <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    </a>
+</div>
+
+    <script src=" /js/main.js " charset="utf-8"></script>
+    <script src=" /js/scroll.min.js " charset="utf-8"></script>
+  </body>
+
+</html>
