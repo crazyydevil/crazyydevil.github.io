@@ -5,8 +5,8 @@
     <description></description>
     <link>http://crazyydevil.github.io/</link>
     <atom:link href="http://crazyydevil.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sat, 03 Sep 2016 18:25:35 +0800</pubDate>
-    <lastBuildDate>Sat, 03 Sep 2016 18:25:35 +0800</lastBuildDate>
+    <pubDate>Wed, 07 Sep 2016 16:46:26 +0800</pubDate>
+    <lastBuildDate>Wed, 07 Sep 2016 16:46:26 +0800</lastBuildDate>
     <generator>Jekyll v3.1.6</generator>
     
       <item>
@@ -19,7 +19,6 @@
   &lt;li&gt;&lt;a href=&quot;#masonry-autolayout&quot; id=&quot;markdown-toc-masonry-autolayout&quot;&gt;masonry-autolayout框架&lt;/a&gt;    &lt;ul&gt;
       &lt;li&gt;&lt;a href=&quot;#masonry&quot; id=&quot;markdown-toc-masonry&quot;&gt;masonry介绍&lt;/a&gt;&lt;/li&gt;
       &lt;li&gt;&lt;a href=&quot;#masonry-1&quot; id=&quot;markdown-toc-masonry-1&quot;&gt;masonry使用&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#masonry-githubhttpsgithubcomsnapkitmasonry&quot; id=&quot;markdown-toc-masonry-githubhttpsgithubcomsnapkitmasonry&quot;&gt;masonry 在&lt;a href=&quot;https://github.com/SnapKit/Masonry&quot;&gt;github的地址&lt;/a&gt;&lt;/a&gt;&lt;/li&gt;
       &lt;li&gt;&lt;a href=&quot;#masonry-&quot; id=&quot;markdown-toc-masonry-&quot;&gt;masonry 的安装&lt;/a&gt;&lt;/li&gt;
       &lt;li&gt;&lt;a href=&quot;#demo1&quot; id=&quot;markdown-toc-demo1&quot;&gt;demo1&lt;/a&gt;        &lt;ul&gt;
           &lt;li&gt;&lt;a href=&quot;#view200&quot; id=&quot;markdown-toc-view200&quot;&gt;设置一个view，位于视图最中心，且长宽为200&lt;/a&gt;&lt;/li&gt;
@@ -29,6 +28,7 @@
       &lt;/li&gt;
       &lt;li&gt;&lt;a href=&quot;#demo2&quot; id=&quot;markdown-toc-demo2&quot;&gt;demo2&lt;/a&gt;        &lt;ul&gt;
           &lt;li&gt;&lt;a href=&quot;#section-3&quot; id=&quot;markdown-toc-section-3&quot;&gt;总结&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;#reveal&quot; id=&quot;markdown-toc-reveal&quot;&gt;Reveal工具&lt;/a&gt;&lt;/li&gt;
         &lt;/ul&gt;
       &lt;/li&gt;
     &lt;/ul&gt;
@@ -59,12 +59,13 @@
 
 &lt;h3 id=&quot;masonry-1&quot;&gt;masonry使用&lt;/h3&gt;
 
-&lt;h3 id=&quot;masonry-githubhttpsgithubcomsnapkitmasonry&quot;&gt;masonry 在&lt;a href=&quot;https://github.com/SnapKit/Masonry&quot;&gt;github的地址&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;masonry 在&lt;a href=&quot;https://github.com/SnapKit/Masonry&quot;&gt;github的地址&lt;/a&gt;&lt;/p&gt;
 
 &lt;h3 id=&quot;masonry-&quot;&gt;masonry 的安装&lt;/h3&gt;
+
 &lt;p&gt;masonry 是使用cocoaPod 管理的 在PodFile 文件中加入 
 &lt;code class=&quot;highlighter-rouge&quot;&gt;pod &#39;Masonry&#39;&lt;/code&gt;
-并使用&lt;code class=&quot;highlighter-rouge&quot;&gt;pod install&lt;/code&gt; 即可&lt;/p&gt;
+并使用&lt;code class=&quot;highlighter-rouge&quot;&gt;pod install&lt;/code&gt; 安装。&lt;/p&gt;
 
 &lt;h3 id=&quot;demo1&quot;&gt;demo1&lt;/h3&gt;
 
@@ -168,12 +169,16 @@
 
 &lt;p&gt;3.添加约束必须在该控件已经添加到父控件之后&lt;/p&gt;
 
-&lt;p&gt;4.注意equalTo与mas_equalTo的区别 mas_equalTo增加了类型转换
-&lt;code class=&quot;highlighter-rouge&quot;&gt;#define mas_equalTo(...)                 equalTo(MASBoxValue((__VA_ARGS__)))&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;4.注意equalTo与mas_equalTo的区别 mas_equalTo增加了类型转换&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;#define mas_equalTo(...)                 equalTo(MASBoxValue((__VA_ARGS__)))&lt;/code&gt;&lt;/p&gt;
 
 &lt;p&gt;当使用and连接时，用equalTo&lt;/p&gt;
 
 &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;make.top.and.left.equalTo(self.view).with.offset(10);&lt;/code&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;reveal&quot;&gt;Reveal工具&lt;/h4&gt;
+&lt;p&gt;手写代码的效率，主要是不能实时看到效果的缘故，可以使用Reveal工具来动态调整UI，当然最终还是要在代码里改变。类似于html的UI调试。&lt;/p&gt;
 
 </description>
         <pubDate>Mon, 29 Aug 2016 15:00:00 +0800</pubDate>
@@ -274,6 +279,34 @@
         
         
         <category>iOS</category>
+        
+      </item>
+    
+      <item>
+        <title>多线程技术</title>
+        <description>&lt;ul id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#github-&quot; id=&quot;markdown-toc-github-&quot;&gt;github 注册个人二级域名&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#jekyll-&quot; id=&quot;markdown-toc-jekyll-&quot;&gt;jekyll 搭建博客模版&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#markdown&quot; id=&quot;markdown-toc-markdown&quot;&gt;markdown使用&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;学习用github搭建个人博客&lt;/p&gt;
+
+&lt;h2 id=&quot;github-&quot;&gt;github 注册个人二级域名&lt;/h2&gt;
+
+&lt;h2 id=&quot;jekyll-&quot;&gt;jekyll 搭建博客模版&lt;/h2&gt;
+
+&lt;h2 id=&quot;markdown&quot;&gt;markdown使用&lt;/h2&gt;
+
+</description>
+        <pubDate>Sun, 10 Jul 2016 15:00:00 +0800</pubDate>
+        <link>http://crazyydevil.github.io/2016/07/10/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E7%9A%84%E6%80%9D%E8%80%83-1/</link>
+        <guid isPermaLink="true">http://crazyydevil.github.io/2016/07/10/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E7%9A%84%E6%80%9D%E8%80%83-1/</guid>
+        
+        <category>Github</category>
+        
+        
+        <category>GitHub</category>
         
       </item>
     

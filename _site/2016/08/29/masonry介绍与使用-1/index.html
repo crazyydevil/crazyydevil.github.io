@@ -177,7 +177,6 @@
   <li><a href="#masonry-autolayout" id="markdown-toc-masonry-autolayout">masonry-autolayout框架</a>    <ul>
       <li><a href="#masonry" id="markdown-toc-masonry">masonry介绍</a></li>
       <li><a href="#masonry-1" id="markdown-toc-masonry-1">masonry使用</a></li>
-      <li><a href="#masonry-githubhttpsgithubcomsnapkitmasonry" id="markdown-toc-masonry-githubhttpsgithubcomsnapkitmasonry">masonry 在<a href="https://github.com/SnapKit/Masonry">github的地址</a></a></li>
       <li><a href="#masonry-" id="markdown-toc-masonry-">masonry 的安装</a></li>
       <li><a href="#demo1" id="markdown-toc-demo1">demo1</a>        <ul>
           <li><a href="#view200" id="markdown-toc-view200">设置一个view，位于视图最中心，且长宽为200</a></li>
@@ -187,6 +186,7 @@
       </li>
       <li><a href="#demo2" id="markdown-toc-demo2">demo2</a>        <ul>
           <li><a href="#section-3" id="markdown-toc-section-3">总结</a></li>
+          <li><a href="#reveal" id="markdown-toc-reveal">Reveal工具</a></li>
         </ul>
       </li>
     </ul>
@@ -217,12 +217,13 @@
 
 <h3 id="masonry-1">masonry使用</h3>
 
-<h3 id="masonry-githubhttpsgithubcomsnapkitmasonry">masonry 在<a href="https://github.com/SnapKit/Masonry">github的地址</a></h3>
+<p>masonry 在<a href="https://github.com/SnapKit/Masonry">github的地址</a></p>
 
 <h3 id="masonry-">masonry 的安装</h3>
+
 <p>masonry 是使用cocoaPod 管理的 在PodFile 文件中加入 
 <code class="highlighter-rouge">pod 'Masonry'</code>
-并使用<code class="highlighter-rouge">pod install</code> 即可</p>
+并使用<code class="highlighter-rouge">pod install</code> 安装。</p>
 
 <h3 id="demo1">demo1</h3>
 
@@ -326,18 +327,29 @@
 
 <p>3.添加约束必须在该控件已经添加到父控件之后</p>
 
-<p>4.注意equalTo与mas_equalTo的区别 mas_equalTo增加了类型转换
-<code class="highlighter-rouge">#define mas_equalTo(...)                 equalTo(MASBoxValue((__VA_ARGS__)))</code></p>
+<p>4.注意equalTo与mas_equalTo的区别 mas_equalTo增加了类型转换</p>
+
+<p><code class="highlighter-rouge">#define mas_equalTo(...)                 equalTo(MASBoxValue((__VA_ARGS__)))</code></p>
 
 <p>当使用and连接时，用equalTo</p>
 
 <p><code class="highlighter-rouge">make.top.and.left.equalTo(self.view).with.offset(10);</code></p>
+
+<h4 id="reveal">Reveal工具</h4>
+<p>手写代码的效率，主要是不能实时看到效果的缘故，可以使用Reveal工具来动态调整UI，当然最终还是要在代码里改变。类似于html的UI调试。</p>
 
 
         </article>
         <hr>
 
         
+        
+            
+            
+                
+                    
+                
+            
         
             
             
