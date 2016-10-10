@@ -6,14 +6,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>学习用github搭建个人博客</title>
-    <meta name="description" content="学习用github搭建个人博客">
+    <title>谈一下单元测试</title>
+    <meta name="description" content="  关于单元测试  集成  使用关于单元测试单元测试的介绍可以自己搜索一下定义。小项目可能比较少人用，觉得写起来麻烦。大中型项目的使用频率就特别高了。比较优秀的第三方库，例如AFNetwoking 也会用单元测试。单元测试是保证软件质量的非常好的重要手机。我们这里介绍一下苹果自带的单元测试方法集成新建项目 的时候...">
 
     <link rel="shortcut icon" href="/favicon.ico?" type="image/x-icon">
     <link rel="icon" href="/favicon.ico?" type="image/x-icon">
     <link rel="stylesheet" href=" /css/fontawesome/css/font-awesome.min.css ">
     <link rel="stylesheet" href=" /css/main.css ">
-    <link rel="canonical" href="http://crazyydevil.github.io/2016/07/10/github-blog-1/">
+    <link rel="canonical" href="http://crazyydevil.github.io/2016/09/08/%E8%B0%88%E4%B8%80%E4%B8%8B%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95-1/">
     <link rel="alternate" type="application/rss+xml" title="Crazyydevil的博客" href="http://crazyydevil.github.io /feed.xml ">
 
 
@@ -116,11 +116,11 @@
 
         <div class="page clearfix" post>
     <div class="left">
-        <h1>学习用github搭建个人博客</h1>
+        <h1>谈一下单元测试</h1>
         <div class="label">
 
             <div class="label-card">
-                <i class="fa fa-calendar"></i>2016-07-10
+                <i class="fa fa-calendar"></i>2016-09-08
             </div>
 
             <div class="label-card">
@@ -170,18 +170,45 @@
         <hr>
         <article itemscope itemtype="http://schema.org/BlogPosting">
         <ul id="markdown-toc">
-  <li><a href="#github-" id="markdown-toc-github-">github 注册个人二级域名</a></li>
-  <li><a href="#jekyll-" id="markdown-toc-jekyll-">jekyll 搭建博客模版</a></li>
-  <li><a href="#markdown" id="markdown-toc-markdown">markdown使用</a></li>
+  <li><a href="#section" id="markdown-toc-section">关于单元测试</a></li>
+  <li><a href="#section-1" id="markdown-toc-section-1">集成</a></li>
+  <li><a href="#section-2" id="markdown-toc-section-2">使用</a></li>
 </ul>
 
-<p>学习用github搭建个人博客</p>
+<h3 id="section">关于单元测试</h3>
+<p>单元测试的介绍可以自己搜索一下定义。
+小项目可能比较少人用，觉得写起来麻烦。大中型项目的使用频率就特别高了。比较优秀的第三方库，例如AFNetwoking 也会用单元测试。单元测试是保证软件质量的非常好的重要手机。</p>
 
-<h2 id="github-">github 注册个人二级域名</h2>
+<p>我们这里介绍一下苹果自带的单元测试方法</p>
 
-<h2 id="jekyll-">jekyll 搭建博客模版</h2>
+<h3 id="section-1">集成</h3>
+<p>新建项目 的时候 有 Include Uinit Tests，默认是打勾状态，这个就是单元测试</p>
 
-<h2 id="markdown">markdown使用</h2>
+<p>有同学可以会问，如果项目开始没有集成测试，后面想集成怎么办？
+ok，那也很简单，你可以在TARGETS 选项里点“＋”号，再选择Test，添加iOS Uinit Testing Bundle。</p>
+
+<h3 id="section-2">使用</h3>
+<p>我们现在已经集成进来了。可以看到test目录下有一个test的.m文件，
+里面有四个方法</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>- (void)setUp {}
+</code></pre>
+</div>
+
+<p>这个方法每个测试方法开始都会先调用一次的，做初始化工作。</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>- (void)tearDown {}
+</code></pre>
+</div>
+
+<p>这个方法每个测试方法结束的时候都会掉用。</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>- (void)testExample{}
+</code></pre>
+</div>
+
+<p>这个方式是一个测试方法的例子。
+每一个测试方法都需要以小写的test</p>
 
 
         </article>
@@ -196,22 +223,6 @@
                         
                         <h2 id="similar_posts">Similar Posts</h2>
                         <ul>
-                        
-                        <li class="relatedPost">
-                            <a href="http://crazyydevil.github.io/2016/09/08/iOS%E7%9A%84%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95-1/">iOS的单元测试(一)
-                            
-                            </a>
-                        </li>
-                        
-                        
-                    
-                
-            
-        
-            
-            
-                
-                    
                         
                         <li class="relatedPost">
                             <a href="http://crazyydevil.github.io/2016/09/01/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E7%9A%84%E6%80%9D%E8%80%83-1/">多线程技术的思考
@@ -238,17 +249,35 @@
                 
             
         
+            
+            
+                
+                    
+                        
+                        <li class="relatedPost">
+                            <a href="http://crazyydevil.github.io/2016/07/10/github-blog-1/">学习用github搭建个人博客
+                            
+                            </a>
+                        </li>
+                        
+                        
+                    
+                
+            
+        
         
             </ul>
         
 
         <div class="post-recent">
     
+    <div class="pre">
+
+        <p><strong>上一篇</strong> <a href="/2016/09/01/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E7%9A%84%E6%80%9D%E8%80%83-1/">多线程技术的思考</a></p>
+        
     </div>
     <div class="nex">
 
-        
-        <p><strong>下一篇</strong> <a href="/2016/07/15/%E4%BB%A3%E7%90%86%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E7%94%A8weak%E4%BF%AE%E9%A5%B0-1/">代理为什么要使用weak修饰</a></p>
         
     </div>
 </div>
@@ -266,8 +295,8 @@
      */
 
     var disqus_config = function() {
-        this.page.url = 'http://crazyydevil.github.io/2016/07/10/github-blog-1/'; // Replace PAGE_URL with your page's canonical URL variable
-        this.page.identifier = 'http://crazyydevil.github.io/2016/07/10/github-blog-1/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        this.page.url = 'http://crazyydevil.github.io/2016/09/08/%E8%B0%88%E4%B8%80%E4%B8%8B%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95-1/'; // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = 'http://crazyydevil.github.io/2016/09/08/%E8%B0%88%E4%B8%80%E4%B8%8B%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95-1/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
     };
 
     (function() { // DON'T EDIT BELOW THIS LINE

@@ -5,9 +5,163 @@
     <description></description>
     <link>http://crazyydevil.github.io/</link>
     <atom:link href="http://crazyydevil.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Wed, 07 Sep 2016 16:46:26 +0800</pubDate>
-    <lastBuildDate>Wed, 07 Sep 2016 16:46:26 +0800</lastBuildDate>
+    <pubDate>Mon, 10 Oct 2016 23:15:59 +0800</pubDate>
+    <lastBuildDate>Mon, 10 Oct 2016 23:15:59 +0800</lastBuildDate>
     <generator>Jekyll v3.1.6</generator>
+    
+      <item>
+        <title>iOS的单元测试(一)</title>
+        <description>&lt;ul id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#section&quot; id=&quot;markdown-toc-section&quot;&gt;关于单元测试&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#section-1&quot; id=&quot;markdown-toc-section-1&quot;&gt;集成&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#section-2&quot; id=&quot;markdown-toc-section-2&quot;&gt;使用&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#ui-test&quot; id=&quot;markdown-toc-ui-test&quot;&gt;关于UI Test&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;iOS的单元测试&lt;/p&gt;
+
+&lt;h3 id=&quot;section&quot;&gt;关于单元测试&lt;/h3&gt;
+&lt;p&gt;单元测试的介绍可以自己搜索一下定义。
+小项目可能比较少人用，觉得写起来麻烦。大中型项目的使用频率就特别高了。比较优秀的第三方库，例如AFNetwoking 也会用单元测试。单元测试是保证软件质量的非常好的重要手机。&lt;/p&gt;
+
+&lt;p&gt;我们这里介绍一下苹果自带的单元测试方法&lt;/p&gt;
+
+&lt;h3 id=&quot;section-1&quot;&gt;集成&lt;/h3&gt;
+&lt;p&gt;新建项目 的时候 有 Include Unit Tests，与 Include UI Tests，默认是打勾状态，这个就是单元测试。&lt;/p&gt;
+
+&lt;p&gt;注意：Unit Tests 主要是针对逻辑的测试，而UI Tests则主要是针对UI界面的测试。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://d17oy1vhnax1f7.cloudfront.net/items/0P2D3T3L2H3L050q3M0q/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-09-13%20%E4%B8%8B%E5%8D%882.03.11.png?v=4695a54c&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;有同学可能会问，如果项目开始没有集成测试，后面想集成怎么办？ok，那也很简单，你可以在TARGETS 选项里点“＋”号，再选择Test，添加iOS UI Testing Bundle 或者iOS Unit Testing Bundle。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://d17oy1vhnax1f7.cloudfront.net/items/0s3m2b3w2X2d1b1T141F/addtarget.png?v=77b912e6&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;section-2&quot;&gt;使用&lt;/h3&gt;
+&lt;p&gt;现在已经集成进来了。我们先看一下UnitTestDemoTests，可以看到目录下有一个UnitTestDemoTests的.m文件，里面有默认有四个方法&lt;/p&gt;
+
+&lt;p&gt;这个方法每个测试方法开始都会先调用一次的，做初始化工作。&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;- (void)setUp
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;这个方法每个测试方法结束的时候都会掉用，做卸载工作。&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;- (void)tearDown
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;这个方法是一个测试方法的例子。&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;- (void)testExample
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;注意：我们每一个测试方法都需要以小写的test开头，当进行单元测试时候，系统会自动检测从XCTestCase继承的子类，并且以test开头的方法，把它们当做测试方法去运行。&lt;/p&gt;
+
+&lt;p&gt;这个方法也是测试方法&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;- (void)testPerformanceExample {
+    // This is an example of a performance test case.
+    [self measureBlock:^{
+        // Put the code you want to measure the time of here.
+    }];
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;因为是test开头的，所以说明它也是一个测试方法。需要注意的是这里面使用到了 measureBlock方法，这是一个性能测试方法。可以在block里写需要进行测试的代码，在左侧设置测试系数，&lt;/p&gt;
+
+&lt;p&gt;我们尝试一下在block里写测试代码。并且设置测试系数，基准线(Baseline)为1秒，偏差(STDDEV)为10%。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://d17oy1vhnax1f7.cloudfront.net/items/38443l1Q422K0u0S3j08/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-09-13%20%E4%B8%8B%E5%8D%883.02.41.png?v=c7682921&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;command+U运行单元测试&lt;/p&gt;
+
+&lt;p&gt;进行性能测试的方法会执行几次以求得平均值。&lt;/p&gt;
+
+&lt;p&gt;得到结果&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://d17oy1vhnax1f7.cloudfront.net/items/1X0V1I401r2v210h2R01/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-09-13%20%E4%B8%8B%E5%8D%883.09.25.png?v=0d162a3c&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;得到运行平均时间1.001s,Rsult，有0.082% 的误差
+在10%的偏差里，所以它并没有报错。&lt;/p&gt;
+
+&lt;p&gt;如果我们将block的测试代码修改一下&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sleep(2)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;再次运行单元测试，结果如下：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://d17oy1vhnax1f7.cloudfront.net/items/0S2t2j2v1u0C0i1y3L1t/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-09-13%20%E4%B8%8B%E5%8D%883.16.43.png?v=93146171&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;这次报了错误，可以很清楚地看到性能测试的结果。
+例子写的非常简单，我们可以结合自己的具体业务进行对应的性能测试。&lt;/p&gt;
+
+&lt;p&gt;除了性能测试，我们更多的是进行逻辑的正确性的测试。这个时候就需要用到断言。测试框架给我们提供了许多判断条件的断言。可以针对实际情况进行使用。&lt;/p&gt;
+
+&lt;p&gt;常见的有：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;XCTAssertTrue()
+XCTAssertFalse()
+XCTAssertNil()
+XCTAssertNotNil()
+XCTAssertEqual()
+XCTAssertEqualObjects()
+XCTAssertNotEqual()
+XCTAssertNotEqualObjects()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;例如我们有个变量，在进行逻辑处理的时候，需要判断它是否为nil，这个时候可以使用&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;-(void)testDemo
+{
+    NSObject *myVar;
+    //具体业务
+    XCTAssertNotNil(myVar);
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;注意：我们直接运行上面的代码，会测试失败，因为myVar没有赋值，为nil，这个断言是判断myVar不为nil才测试成功。&lt;/p&gt;
+
+&lt;p&gt;单元测试最常见的一个场景是用来测试接口。我们可以为每个接口定义一个测试用例。修改功能之后跑一遍所有的接口，以测试我们新增加或者修改的功能对原功能有没有影响。&lt;/p&gt;
+
+&lt;h3 id=&quot;ui-test&quot;&gt;关于UI Test&lt;/h3&gt;
+&lt;p&gt;UI的交互测试，一般用的比较少，以前是用instrument 在里面录制行为变成js代码。xcode7 提供了直接在xcode里面可以进行录制的功能，录制生成的代码是原生的代码。待续&lt;/p&gt;
+
+</description>
+        <pubDate>Thu, 08 Sep 2016 15:00:00 +0800</pubDate>
+        <link>http://crazyydevil.github.io/2016/09/08/iOS%E7%9A%84%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95-1/</link>
+        <guid isPermaLink="true">http://crazyydevil.github.io/2016/09/08/iOS%E7%9A%84%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95-1/</guid>
+        
+        <category>Github</category>
+        
+        
+        <category>GitHub</category>
+        
+      </item>
+    
+      <item>
+        <title>多线程技术的思考</title>
+        <description>
+&lt;p&gt;TO do&lt;/p&gt;
+
+</description>
+        <pubDate>Thu, 01 Sep 2016 15:00:00 +0800</pubDate>
+        <link>http://crazyydevil.github.io/2016/09/01/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E7%9A%84%E6%80%9D%E8%80%83-1/</link>
+        <guid isPermaLink="true">http://crazyydevil.github.io/2016/09/01/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E7%9A%84%E6%80%9D%E8%80%83-1/</guid>
+        
+        <category>Github</category>
+        
+        
+        <category>GitHub</category>
+        
+      </item>
     
       <item>
         <title>masonry介绍与使用</title>
@@ -279,34 +433,6 @@
         
         
         <category>iOS</category>
-        
-      </item>
-    
-      <item>
-        <title>多线程技术</title>
-        <description>&lt;ul id=&quot;markdown-toc&quot;&gt;
-  &lt;li&gt;&lt;a href=&quot;#github-&quot; id=&quot;markdown-toc-github-&quot;&gt;github 注册个人二级域名&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#jekyll-&quot; id=&quot;markdown-toc-jekyll-&quot;&gt;jekyll 搭建博客模版&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#markdown&quot; id=&quot;markdown-toc-markdown&quot;&gt;markdown使用&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;学习用github搭建个人博客&lt;/p&gt;
-
-&lt;h2 id=&quot;github-&quot;&gt;github 注册个人二级域名&lt;/h2&gt;
-
-&lt;h2 id=&quot;jekyll-&quot;&gt;jekyll 搭建博客模版&lt;/h2&gt;
-
-&lt;h2 id=&quot;markdown&quot;&gt;markdown使用&lt;/h2&gt;
-
-</description>
-        <pubDate>Sun, 10 Jul 2016 15:00:00 +0800</pubDate>
-        <link>http://crazyydevil.github.io/2016/07/10/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E7%9A%84%E6%80%9D%E8%80%83-1/</link>
-        <guid isPermaLink="true">http://crazyydevil.github.io/2016/07/10/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E7%9A%84%E6%80%9D%E8%80%83-1/</guid>
-        
-        <category>Github</category>
-        
-        
-        <category>GitHub</category>
         
       </item>
     

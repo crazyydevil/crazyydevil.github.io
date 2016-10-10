@@ -6,14 +6,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>学习用github搭建个人博客</title>
-    <meta name="description" content="学习用github搭建个人博客">
+    <title>iOS的单元测试(一)</title>
+    <meta name="description" content="iOS的单元测试">
 
     <link rel="shortcut icon" href="/favicon.ico?" type="image/x-icon">
     <link rel="icon" href="/favicon.ico?" type="image/x-icon">
     <link rel="stylesheet" href=" /css/fontawesome/css/font-awesome.min.css ">
     <link rel="stylesheet" href=" /css/main.css ">
-    <link rel="canonical" href="http://crazyydevil.github.io/2016/07/10/github-blog-1/">
+    <link rel="canonical" href="http://crazyydevil.github.io/2016/09/08/iOS%E7%9A%84%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95-1/">
     <link rel="alternate" type="application/rss+xml" title="Crazyydevil的博客" href="http://crazyydevil.github.io /feed.xml ">
 
 
@@ -116,11 +116,11 @@
 
         <div class="page clearfix" post>
     <div class="left">
-        <h1>学习用github搭建个人博客</h1>
+        <h1>iOS的单元测试(一)</h1>
         <div class="label">
 
             <div class="label-card">
-                <i class="fa fa-calendar"></i>2016-07-10
+                <i class="fa fa-calendar"></i>2016-09-08
             </div>
 
             <div class="label-card">
@@ -170,18 +170,127 @@
         <hr>
         <article itemscope itemtype="http://schema.org/BlogPosting">
         <ul id="markdown-toc">
-  <li><a href="#github-" id="markdown-toc-github-">github 注册个人二级域名</a></li>
-  <li><a href="#jekyll-" id="markdown-toc-jekyll-">jekyll 搭建博客模版</a></li>
-  <li><a href="#markdown" id="markdown-toc-markdown">markdown使用</a></li>
+  <li><a href="#section" id="markdown-toc-section">关于单元测试</a></li>
+  <li><a href="#section-1" id="markdown-toc-section-1">集成</a></li>
+  <li><a href="#section-2" id="markdown-toc-section-2">使用</a></li>
+  <li><a href="#ui-test" id="markdown-toc-ui-test">关于UI Test</a></li>
 </ul>
 
-<p>学习用github搭建个人博客</p>
+<p>iOS的单元测试</p>
 
-<h2 id="github-">github 注册个人二级域名</h2>
+<h3 id="section">关于单元测试</h3>
+<p>单元测试的介绍可以自己搜索一下定义。
+小项目可能比较少人用，觉得写起来麻烦。大中型项目的使用频率就特别高了。比较优秀的第三方库，例如AFNetwoking 也会用单元测试。单元测试是保证软件质量的非常好的重要手机。</p>
 
-<h2 id="jekyll-">jekyll 搭建博客模版</h2>
+<p>我们这里介绍一下苹果自带的单元测试方法</p>
 
-<h2 id="markdown">markdown使用</h2>
+<h3 id="section-1">集成</h3>
+<p>新建项目 的时候 有 Include Unit Tests，与 Include UI Tests，默认是打勾状态，这个就是单元测试。</p>
+
+<p>注意：Unit Tests 主要是针对逻辑的测试，而UI Tests则主要是针对UI界面的测试。</p>
+
+<p><img src="https://d17oy1vhnax1f7.cloudfront.net/items/0P2D3T3L2H3L050q3M0q/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-09-13%20%E4%B8%8B%E5%8D%882.03.11.png?v=4695a54c" alt="" /></p>
+
+<p>有同学可能会问，如果项目开始没有集成测试，后面想集成怎么办？ok，那也很简单，你可以在TARGETS 选项里点“＋”号，再选择Test，添加iOS UI Testing Bundle 或者iOS Unit Testing Bundle。</p>
+
+<p><img src="https://d17oy1vhnax1f7.cloudfront.net/items/0s3m2b3w2X2d1b1T141F/addtarget.png?v=77b912e6" alt="" /></p>
+
+<h3 id="section-2">使用</h3>
+<p>现在已经集成进来了。我们先看一下UnitTestDemoTests，可以看到目录下有一个UnitTestDemoTests的.m文件，里面有默认有四个方法</p>
+
+<p>这个方法每个测试方法开始都会先调用一次的，做初始化工作。</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>- (void)setUp
+</code></pre>
+</div>
+
+<p>这个方法每个测试方法结束的时候都会掉用，做卸载工作。</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>- (void)tearDown
+</code></pre>
+</div>
+
+<p>这个方法是一个测试方法的例子。</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>- (void)testExample
+</code></pre>
+</div>
+
+<p>注意：我们每一个测试方法都需要以小写的test开头，当进行单元测试时候，系统会自动检测从XCTestCase继承的子类，并且以test开头的方法，把它们当做测试方法去运行。</p>
+
+<p>这个方法也是测试方法</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>- (void)testPerformanceExample {
+    // This is an example of a performance test case.
+    [self measureBlock:^{
+        // Put the code you want to measure the time of here.
+    }];
+}
+</code></pre>
+</div>
+
+<p>因为是test开头的，所以说明它也是一个测试方法。需要注意的是这里面使用到了 measureBlock方法，这是一个性能测试方法。可以在block里写需要进行测试的代码，在左侧设置测试系数，</p>
+
+<p>我们尝试一下在block里写测试代码。并且设置测试系数，基准线(Baseline)为1秒，偏差(STDDEV)为10%。</p>
+
+<p><img src="https://d17oy1vhnax1f7.cloudfront.net/items/38443l1Q422K0u0S3j08/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-09-13%20%E4%B8%8B%E5%8D%883.02.41.png?v=c7682921" alt="" /></p>
+
+<p>command+U运行单元测试</p>
+
+<p>进行性能测试的方法会执行几次以求得平均值。</p>
+
+<p>得到结果</p>
+
+<p><img src="https://d17oy1vhnax1f7.cloudfront.net/items/1X0V1I401r2v210h2R01/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-09-13%20%E4%B8%8B%E5%8D%883.09.25.png?v=0d162a3c" alt="" /></p>
+
+<p>得到运行平均时间1.001s,Rsult，有0.082% 的误差
+在10%的偏差里，所以它并没有报错。</p>
+
+<p>如果我们将block的测试代码修改一下</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>sleep(2)
+</code></pre>
+</div>
+
+<p>再次运行单元测试，结果如下：</p>
+
+<p><img src="https://d17oy1vhnax1f7.cloudfront.net/items/0S2t2j2v1u0C0i1y3L1t/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-09-13%20%E4%B8%8B%E5%8D%883.16.43.png?v=93146171" alt="" /></p>
+
+<p>这次报了错误，可以很清楚地看到性能测试的结果。
+例子写的非常简单，我们可以结合自己的具体业务进行对应的性能测试。</p>
+
+<p>除了性能测试，我们更多的是进行逻辑的正确性的测试。这个时候就需要用到断言。测试框架给我们提供了许多判断条件的断言。可以针对实际情况进行使用。</p>
+
+<p>常见的有：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>XCTAssertTrue()
+XCTAssertFalse()
+XCTAssertNil()
+XCTAssertNotNil()
+XCTAssertEqual()
+XCTAssertEqualObjects()
+XCTAssertNotEqual()
+XCTAssertNotEqualObjects()
+</code></pre>
+</div>
+
+<p>例如我们有个变量，在进行逻辑处理的时候，需要判断它是否为nil，这个时候可以使用</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>-(void)testDemo
+{
+    NSObject *myVar;
+    //具体业务
+    XCTAssertNotNil(myVar);
+}
+</code></pre>
+</div>
+
+<p>注意：我们直接运行上面的代码，会测试失败，因为myVar没有赋值，为nil，这个断言是判断myVar不为nil才测试成功。</p>
+
+<p>单元测试最常见的一个场景是用来测试接口。我们可以为每个接口定义一个测试用例。修改功能之后跑一遍所有的接口，以测试我们新增加或者修改的功能对原功能有没有影响。</p>
+
+<h3 id="ui-test">关于UI Test</h3>
+<p>UI的交互测试，一般用的比较少，以前是用instrument 在里面录制行为变成js代码。xcode7 提供了直接在xcode里面可以进行录制的功能，录制生成的代码是原生的代码。待续</p>
 
 
         </article>
@@ -196,22 +305,6 @@
                         
                         <h2 id="similar_posts">Similar Posts</h2>
                         <ul>
-                        
-                        <li class="relatedPost">
-                            <a href="http://crazyydevil.github.io/2016/09/08/iOS%E7%9A%84%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95-1/">iOS的单元测试(一)
-                            
-                            </a>
-                        </li>
-                        
-                        
-                    
-                
-            
-        
-            
-            
-                
-                    
                         
                         <li class="relatedPost">
                             <a href="http://crazyydevil.github.io/2016/09/01/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E7%9A%84%E6%80%9D%E8%80%83-1/">多线程技术的思考
@@ -238,17 +331,35 @@
                 
             
         
+            
+            
+                
+                    
+                        
+                        <li class="relatedPost">
+                            <a href="http://crazyydevil.github.io/2016/07/10/github-blog-1/">学习用github搭建个人博客
+                            
+                            </a>
+                        </li>
+                        
+                        
+                    
+                
+            
+        
         
             </ul>
         
 
         <div class="post-recent">
     
+    <div class="pre">
+
+        <p><strong>上一篇</strong> <a href="/2016/09/01/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E7%9A%84%E6%80%9D%E8%80%83-1/">多线程技术的思考</a></p>
+        
     </div>
     <div class="nex">
 
-        
-        <p><strong>下一篇</strong> <a href="/2016/07/15/%E4%BB%A3%E7%90%86%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E7%94%A8weak%E4%BF%AE%E9%A5%B0-1/">代理为什么要使用weak修饰</a></p>
         
     </div>
 </div>
@@ -266,8 +377,8 @@
      */
 
     var disqus_config = function() {
-        this.page.url = 'http://crazyydevil.github.io/2016/07/10/github-blog-1/'; // Replace PAGE_URL with your page's canonical URL variable
-        this.page.identifier = 'http://crazyydevil.github.io/2016/07/10/github-blog-1/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        this.page.url = 'http://crazyydevil.github.io/2016/09/08/iOS%E7%9A%84%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95-1/'; // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = 'http://crazyydevil.github.io/2016/09/08/iOS%E7%9A%84%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95-1/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
     };
 
     (function() { // DON'T EDIT BELOW THIS LINE
